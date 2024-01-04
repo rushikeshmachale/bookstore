@@ -57,11 +57,7 @@ const Navbar = () => {
                        Orders
                     </Link>
                   </li>
-                  <li>
-                    <Link className="dropdown-item" to={`/`}>
-                      Items list
-                    </Link>
-                  </li>
+                
                   
                   <li><Link to='/addbook' className="dropdown-item">Add Books</Link></li>
                 </div>

@@ -1,5 +1,34 @@
 import Customers from "../models/customers.js";
 import bcrypt from "bcryptjs";
+import nodemailer from "nodemailer";
+import bodyParser from "body-parser";
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "jocky0909@gmail.com",
+    pass: "tnzd uhwo qjvh bgvm",
+  },
+});
+export const sendMail = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const otp = Math.round(Math.random() * 100000);
+    const mailOptions = {
+      from: "jocky0909@gmail.com",
+      to: email,
+      subject: "Welcome to Bookstore",
+      text: `Account verification code is ${otp}`,
+    };
+
+    await transporter.sendMail(mailOptions).then(() => {
+      res.json({ otp });
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error." });
+  }
+};
+
 export const addCustomer = async (req, res) => {
   try {
     const { name, email, password, img, role } = req.body;
@@ -15,6 +44,7 @@ export const addCustomer = async (req, res) => {
         password: hashedPassword,
         role,
       });
+
       await newCustomer
         .save()
         .then(() => {
@@ -24,6 +54,7 @@ export const addCustomer = async (req, res) => {
           return res.status(400).json(e);
         });
     }
+
   } catch (error) {
     console.log(error);
   }
@@ -56,7 +87,7 @@ export const addCustomers = async (req, res) => {
     const customers = new Customers({
       name: l.name,
       email: l.email,
-      img:l.img,
+      img: l.img,
       password: l.password,
       role: l.role,
     });
@@ -79,10 +110,32 @@ export const addCustomers = async (req, res) => {
 export const getCustomerByid = async (req, res) => {
   const { id } = req.params;
 
- try {
-   const customer = await Customers.findById(id);
-   return res.status(200).json(customer);
- } catch (error) {
-  return res.status(400).json('customer not found');
- }
+  try {
+    const customer = await Customers.findById(id);
+    return res.status(200).json(customer);
+  } catch (error) {
+    return res.status(400).json("customer not found");
+  }
+};
+
+export const updateCustomer = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, email, password, img, role } = req.body;
+
+    if (id) {
+      await Customers.findByIdAndUpdate(id, {
+        name,
+        email,
+        password,
+        img,
+        role,
+      });
+      return res.status(200).json("customer updated ");
+    } else {
+      return res.status(400).json("customer not found");
+    }
+  } catch (error) {
+    return res.status(400).json(error);
+  }
 };

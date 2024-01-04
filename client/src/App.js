@@ -11,6 +11,8 @@ import Cart from "./component/Cart";
 import Orders from "./component/Orders";
 import Info from "./component/Info";
 import OrderUpdate from "./component/OrderUpdate";
+import UpdateBook from "./component/UpdateBook";
+import UpdateCustomer from "./component/UpdateCustomer";
 
 function App() {
   return (
@@ -21,10 +23,12 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/addbook" element={<AddBook />} />
         <Route path="/view/:id" element={<View />} />
+        <Route path="/edit/:id" element={<UpdateBook />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/profile" element={<Info />} />
         <Route path="/order/update/:id" element={<OrderUpdate />} />
+        <Route path="/customer/update/:id" element={<UpdateCustomer />} />
         <Route path="*" element={<b className="container text-center card p-3 my-5">404 page not found</b>} />
       </Routes>
     </BrowserRouter>

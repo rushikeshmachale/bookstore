@@ -47,11 +47,11 @@ const Info = () => {
             <b className="card-text m-auto mt-4"><i>Account created </i> </b>
             <p className="m-auto">{new Date(x.createdAt).toLocaleString()}</p>
 
-            <div className="card-text m-auto mt-3">
+            <div className="card-text m-auto mt-3 d-flex flex-wrap">
               <Link to="/home" className=" btn btn-dark">
                 Home
               </Link>
-              <Link to="/home" className=" btn btn-dark mx-2">
+              <Link to={`/customer/update/${x._id}`} className=" btn btn-dark mx-2">
                 Update
               </Link>
             </div>

@@ -26,7 +26,6 @@ const Signin = () => {
         localStorage.setItem("role", response.data.role);
         localStorage.setItem("customerid", response.data._id);
         localStorage.setItem("user", email);
-        console.log(response.data._id);
       } catch (error) {
         toast.error("Invalid credentials");
       }

@@ -48,7 +48,7 @@ const Orders = () => {
             orders.map((x) => (
               <tr key={x._id}>
                 <td>
-                  <img src={x.img} alt={x.bookname} height={60} className="rounded-2" />
+                  <img src={x.img} alt={x.bookname} style={{maxHeight:"60px",maxWidth:"100px",minHeight:"60px",minWidth:"100px"}}  className="rounded-2" />
                 </td>
                 <td>
                   {role === "admin" ? (

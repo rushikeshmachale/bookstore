@@ -50,7 +50,7 @@ const Cart = () => {
               cart.map((x) => (
                 <tr key={x}>
                   <td>
-                    <img src={x.img} height={60} className=" rounded-2" />
+                    <img src={x.img}  style={{maxHeight:"60px",maxWidth:"100px",minHeight:"60px",minWidth:"100px"}} className=" rounded-2" alt="Img not found"/>
                   </td>
                   <td>{x.bookname}</td>
                   <td>{x.author}</td>
