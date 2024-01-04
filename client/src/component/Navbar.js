@@ -13,7 +13,7 @@ const Navbar = () => {
         <div className="container-fluid">
           <span>
             <Link className="navbar-brand" to={`/home`}>
-              BookStore
+              eBookStore
             </Link>
           </span>
            

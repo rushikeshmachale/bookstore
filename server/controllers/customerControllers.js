@@ -6,8 +6,8 @@ import bodyParser from "body-parser";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "jocky0909@gmail.com",
-    pass: "tnzd uhwo qjvh bgvm",
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD,
   },
 });
 export const sendMail = async (req, res) => {
@@ -15,10 +15,15 @@ export const sendMail = async (req, res) => {
     const { email } = req.body;
     const otp = Math.round(Math.random() * 100000);
     const mailOptions = {
-      from: "jocky0909@gmail.com",
+      from: process.env.EMAIL,
       to: email,
-      subject: "Welcome to Bookstore",
-      text: `Account verification code is ${otp}`,
+      subject: "Welcome to eBookstore ",
+      text: `You tried to log in on our portal. Here is the OTP to continue ${otp}. It will be valid for the next ten minutes. Please do not share OTP with anyone.
+
+      Thank you,
+      eBookstore
+      
+      If you did not make this request, you can safely ignore this email.`,
     };
 
     await transporter.sendMail(mailOptions).then(() => {
