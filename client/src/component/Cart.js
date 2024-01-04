@@ -37,37 +37,57 @@ const Cart = () => {
         <h2 className=" text-body-tertiary">Cart</h2>
         <table className="table table-responsive ">
           <thead>
-            <th></th>
-            <th>
-              <sup>Bookname</sup>
+            <tr>
+              <th></th>
+              <th>
+                <sup>Bookname</sup>
+              </th>
+              <th>
+                <sup>Author</sup>
+              </th><th>
+              <sup>Price</sup>
             </th>
-            <th><sup>Author</sup></th>
-            <th><sup>Price</sup></th>
-            <th className=" float-end"></th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
             {cart.length > 0 ? (
               cart.map((x) => (
-                <tr key={x}>
+                <tr key={x._id}>
                   <td>
-                    <img src={x.img}  style={{maxHeight:"60px",maxWidth:"100px",minHeight:"60px",minWidth:"100px"}} className=" rounded-2" alt="Img not found"/>
+                    <img
+                      src={x.img}
+                      style={{
+                        maxHeight: "60px",
+                        maxWidth: "100px",
+                        minHeight: "60px",
+                        minWidth: "100px",
+                      }}
+                      className=" rounded-2"
+                      alt="Img not found"
+                    />
                   </td>
                   <td>{x.bookname}</td>
                   <td>{x.author}</td>
-                  <td><b> ₹ </b>{x.price} /.</td>
-                  <td className=" text-end">
+                  <td>
+                    <b> ₹ </b>
+                    {x.price} /.
+                  </td>
+                  <td className="mt-4 justify-content-center  text-end d-flex ">
                     <button
-                      className="btn btn-danger mx-2"
+                      className="btn btn-danger"
                       onClick={() => handleDelete(x._id)}
                     >
                       🗑
                     </button>
-                    <button className="btn btn-warning">💲</button>
+                    <button className="btn btn-warning mx-1">💲</button>
                   </td>
                 </tr>
               ))
             ) : (
-              <b className="card m-3 p-3">Cart is empty</b>
+              <tr className="card m-3 p-3">
+                <td>Cart is empty</td>
+              </tr>
             )}
           </tbody>
         </table>

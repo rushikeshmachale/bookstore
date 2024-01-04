@@ -41,13 +41,21 @@ const [temp,setTemp] = useState([])
   }
 
   const handleSort=(e)=>{
-    const sorted = [...books].sort((a,b)=>a.price-b.price)
+    if(sort==='🔼'){
+
+      const sorted = [...books].sort((a,b)=>b.price>a.price?1:-1)
+      setTemp(sorted)
+      setSort('🔽')
+    }else{
+      const sorted = [...books].sort((a,b)=>b.price>a.price?-1:1)
     setTemp(sorted)
+    setSort('🔼')
+    }
   } 
   const handleSort2=(e)=>{
-    const sorted = [...books].sort((a,b)=>b.price-a.price)
-    setTemp(sorted)
+    
   }
+  const [sort,setSort]=useState('🔽')
   return (
     <div className="container-fluid">
       <Navbar />
@@ -57,7 +65,7 @@ const [temp,setTemp] = useState([])
       >
         <ToastContainer />
         <div className="container d-flex ">
-          <div  className="form-control w-25 mx-1" onClick={handleSort}>Sort</div>
+          <div style={{width:"150px"}} className="form-control  mx-1" onClick={handleSort}>Sort Price {sort}</div>
           <input
             type="text"
             className="form-control w-75 m-auto mx-1"

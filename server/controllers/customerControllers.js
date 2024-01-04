@@ -2,7 +2,8 @@ import Customers from "../models/customers.js";
 import bcrypt from "bcryptjs";
 import nodemailer from "nodemailer";
 import bodyParser from "body-parser";
-
+import dotenv from 'dotenv'
+dotenv.config()
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
