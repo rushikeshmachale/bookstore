@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -9,18 +9,20 @@ const Cart = () => {
   const customerid = localStorage.getItem("customerid");
   const [cart, setCart] = useState([]);
 
+  const navigate = useNavigate();
   useEffect(() => {
     loadData();
   }, []);
   const loadData = async () => {
     const res = await axios.get(
-      `http://localhost:4000/carts/get/${customerid}`
+      `${process.env.REACT_APP_BACKEND_API}/carts/get/${customerid}`
     );
     setCart(res.data);
+    console.log(cart);
   };
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:4000/carts/delete/${id}`)
+      .delete(`${process.env.REACT_APP_BACKEND_API}/carts/delete/${id}`)
       .then(() => {
         loadData();
         toast.success("book deleted successfully!!");
@@ -29,13 +31,32 @@ const Cart = () => {
         toast.error("book not deleted !");
       });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(`${process.env.REACT_APP_BACKEND_API}/orders/save`, {
+        customerid: customerid,
+        bookid: cart.bookid,
+        img: cart.img,
+        bookname: cart.bookname,
+        price: cart.price,
+        author: cart.author,
+        status: "pending",
+      });
+      navigate("/orders");
+    } catch (error) {
+      toast.error("Couldn't add order");
+    }
+    // .then(()=>navigate('/orders')).catch(()=>  toast.error("Couldn't add order"))
+  };
   return (
     <div className="container">
       <Navbar />
       <ToastContainer />
       <div style={{ marginTop: "60px" }}>
         <h2 className=" text-body-tertiary">Cart</h2>
-        <table className="table table-responsive ">
+        <table className="table table-responsive table-borderless ">
           <thead>
             <tr>
               <th></th>
@@ -44,9 +65,10 @@ const Cart = () => {
               </th>
               <th>
                 <sup>Author</sup>
-              </th><th>
-              <sup>Price</sup>
-            </th>
+              </th>
+              <th>
+                <sup>Price</sup>
+              </th>
               <th></th>
             </tr>
           </thead>
@@ -73,14 +95,21 @@ const Cart = () => {
                     <b> ₹ </b>
                     {x.price} /.
                   </td>
-                  <td className="mt-4 justify-content-center  text-end d-flex ">
+                  <td className="justify-content-center  text-end d-flex ">
                     <button
                       className="btn btn-danger"
                       onClick={() => handleDelete(x._id)}
                     >
                       🗑
                     </button>
-                    <button className="btn btn-warning mx-1">💲</button>
+                    {/**
+                  <button
+                      className="btn btn-warning mx-1"
+                      onClick={handleSubmit}
+                    >
+                      💲
+                    </button>
+                  */}
                   </td>
                 </tr>
               ))

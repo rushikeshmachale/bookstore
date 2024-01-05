@@ -26,7 +26,7 @@ const UpdateBook = () => {
     loadData();
   }, []);
   const loadData = async () => {
-    const res = await axios.get(`${api}/books/get/${id}`);
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_API}/books/get/${id}`);
     setBookData(res.data);
   };
   const { bookname, author, price, ratings, reviews } = bookData;
@@ -57,7 +57,7 @@ const UpdateBook = () => {
     setLoading(true);
     const imgUrl = await uploadImage("image");
     await axios
-      .put(`${api}/books/edit/${id}`, { ...bookData, img: imgUrl })
+      .put(`${process.env.REACT_APP_BACKEND_API}/books/edit/${id}`, { ...bookData, img: imgUrl })
       .then(() => {
         setImg(null);
         setLoading(false);

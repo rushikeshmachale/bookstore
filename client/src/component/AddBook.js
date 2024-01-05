@@ -43,7 +43,7 @@ const AddBook = () => {
     setLoading(true);
     const imgUrl = await uploadImage("image");
     await axios
-      .post("http://localhost:4000/books/save", { ...bookData, img: imgUrl })
+      .post(`${process.env.REACT_APP_BACKEND_API}/books/save`, { ...bookData, img: imgUrl })
       .then(() => {
         setImg(null);
         setLoading(false);

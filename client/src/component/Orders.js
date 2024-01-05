@@ -17,9 +17,9 @@ const Orders = () => {
     try {
       let res;
       if (role === "admin") {
-        res = await axios.get(`http://localhost:4000/orders/get`);
+        res = await axios.get(`${process.env.REACT_APP_BACKEND_API}/orders/get`);
       } else {
-        res = await axios.get(`http://localhost:4000/orders/find/${id}`);
+        res = await axios.get(`${process.env.REACT_APP_BACKEND_API}/orders/find/${id}`);
       }
       setOrders(res.data);
     } catch (error) {
@@ -31,7 +31,7 @@ const Orders = () => {
     <div className="container">
       <Navbar />
       <h2 className="mt-4 text-body-tertiary">Orders</h2>
-      <table className="table table-striped mt-4">
+      <table className="table table-striped mt-4 table-borderless">
         <thead className="bg-primary text-white">
           <tr>
             <th></th>

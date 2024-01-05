@@ -16,7 +16,7 @@ const [temp,setTemp] = useState([])
 
   const loadData = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/books/find");
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_API}/books/find`);
       setBooks(response.data);
       setTemp(response.data)
     } catch (error) {
@@ -26,7 +26,7 @@ const [temp,setTemp] = useState([])
 
   const deleteBook = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/books/delete/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_API}/books/delete/${id}`);
       toast.success("Book deleted");
       loadData();
     } catch (error) {

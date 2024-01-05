@@ -23,7 +23,7 @@ const OrderUpdate = () => {
   }, []);
   const loadData = async () => {
     const res = await axios.get(
-      `http://localhost:4000/orders/find/order/${id}`
+      `${process.env.REACT_APP_BACKEND_API}/orders/find/order/${id}`
     );
     setOrder(res.data);
   };
@@ -33,7 +33,7 @@ const OrderUpdate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .put(`http://localhost:4000/orders/update/${id}`, order)
+      .put(`${process.env.REACT_APP_BACKEND_API}/orders/update/${id}`, order)
       .then(() => {
         navigate("/orders");
       })

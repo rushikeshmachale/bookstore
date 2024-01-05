@@ -48,7 +48,7 @@ const UpdateCustomer = () => {
     setLoading(true)
     const imgUrl = await uploadImage("image")
     await axios
-      .put(`${api}/customers/edit/${id}`, {name:name, email:email,img:imgUrl, password:password,role:'user'})
+      .put(`${process.env.REACT_APP_BACKEND_API}/customers/edit/${id}`, {name:name, email:email,img:imgUrl, password:password,role:'user'})
       .then((e) => {
         setImg(null)
         setLoading(false)

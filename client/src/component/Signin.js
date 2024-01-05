@@ -21,7 +21,7 @@ const Signin = () => {
       toast.error("Please provide all fields");
     } else {
       try {
-        const response = await axios.post("http://localhost:4000/customers/login", user);
+        const response = await axios.post(`${process.env.REACT_APP_BACKEND_API}/customers/login`, user);
         navigate("/home");
         localStorage.setItem("role", response.data.role);
         localStorage.setItem("customerid", response.data._id);

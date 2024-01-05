@@ -46,7 +46,7 @@ const Signup = () => {
     }
 
     const val=await axios
-      .post("http://localhost:4000/customers/send", {
+      .post(`${process.env.REACT_APP_BACKEND_API}/customers/send`, {
          email
       })
       setOtp(val.data.otp);
@@ -74,7 +74,7 @@ const Signup = () => {
     if(flag===true){
     const imgUrl = await uploadImage("image");
     await axios
-      .post("http://localhost:4000/customers/save", {
+      .post(`${process.env.REACT_APP_BACKEND_API}/customers/save`, {
         name: name,
         email: email,
         img: imgUrl,
@@ -159,7 +159,7 @@ const Signup = () => {
           onChange={handleChange}
           id="password"
           className=" form-control my-2 "
-          placeholder="Enter your password"
+          placeholder="Create your password"
         />
         <div className="text-center my-3">
           <button className="btn btn-info" onClick={handleSubmit}>
@@ -168,7 +168,7 @@ const Signup = () => {
         </div>
         <div className="text-center my-3">
           <Link to="/" className=" text-decoration-none text-danger">
-            Already have an account Signin
+            Already have an account? Signin
           </Link>
         </div>
       </form>

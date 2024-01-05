@@ -17,7 +17,7 @@ const View = () => {
 
   const loadData = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/books/get/${id}`);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_API}/books/get/${id}`);
       setBookData(res.data);
     } catch (error) {
       console.error("Error fetching book data:", error);
@@ -27,7 +27,7 @@ const View = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4000/carts/add", {
+      await axios.post(`${process.env.REACT_APP_BACKEND_API}/carts/add`, {
         customerid: customerid,
         bookid: id,
         img: bookData.img,
@@ -44,7 +44,7 @@ const View = () => {
   const handleSubmitOrders = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4000/orders/save", {
+      await axios.post(`${process.env.REACT_APP_BACKEND_API}/orders/save`, {
         customerid: customerid,
         bookid: id,
         img: bookData.img,

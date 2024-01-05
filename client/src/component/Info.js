@@ -13,7 +13,7 @@ const Info = () => {
   }, []);
 
   const loadData = async () => {
-    const res = await axios.get(`http://localhost:4000/customers/find/${id}`);
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_API}/customers/find/${id}`);
     setInfoData([res.data]);
   };
   console.log(id);
