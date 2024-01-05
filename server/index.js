@@ -25,9 +25,10 @@ app.use('/books',bookrouter)
 app.use('/carts',cartrouter)
 app.use('/orders',orouter)
 
+const port = process.env.PORT ||4000
 
-app.listen(4000,()=>{
-    console.log('listening to 4000');
+app.listen(port,()=>{
+    console.log(`listening to ${port}`);
     // try {
     // } catch (error) {
     //     console.log(error);
