@@ -1,5 +1,3 @@
-Project code available at master branch please do check.
-
 # Bookstore E-commerce Website (MERN Stack)
 Welcome to the Bookstore E-commerce Website! This project is a full-stack web application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It provides a comprehensive platform for selling books online, allowing users to browse, purchase, and manage their orders seamlessly.
 
