@@ -4,16 +4,16 @@ Welcome to the Bookstore E-commerce Website! This project is a full-stack web ap
 ### Features
 User Authentication: Users can sign up, log in securely, and manage their profile.
 
-### Product Catalog:
+#### Product Catalog:
 Browse through a diverse range of books categorized by genre, author, or publication date.
 
-### Shopping Cart:
+#### Shopping Cart:
 Add books to the cart, update quantities, and proceed to checkout securely.
 
-### Order Management:
+#### Order Management:
 Users can view order history, track the status of orders, and manage delivery details.
 
-### Admin Panel:
+#### Admin Panel:
 Admins can add new books, manage existing products, and view sales reports.
 
 
